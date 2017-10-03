@@ -154,4 +154,25 @@ unpack_arguments(person_data[0], person_data[1], person_data[2])
 unpack_arguments(*person_data)
 ```
 
+- Set
+```
+my_shopping_cart = {'apple', 'milk', 'beer', 'milk'}
+print(my_shopping_cart)
+print(len(my_shopping_cart))
+print('milk' in my_shopping_cart)
+```
+
+- Dictionary (watch out the three different loops)
+```
+classmates = { 'Tony': 'cool but smells', 'Emma': 'sits behind me', 'Lucy': 'asks me too much questions' }
+print(len(classmates))
+print(classmates['Tony'])
+for i in classmates:
+    print(i)
+for i in classmates.items():
+    print(i)
+for k, v in classmates.items():
+    print(k, v)
+```
+
 Now here are the basics for Python to remember, get back if need to recall the points, I will do more excited thing in the next part.
