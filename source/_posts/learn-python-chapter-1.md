@@ -1,10 +1,8 @@
 ---
-title: Learn Python - Chapter 1 - Basics
+title: Learn Python - Basics
 date: 2017-10-03
 tag: python
 ---
-
-# Learn Python - Basics
 
 It is very excited to learn [python](https://www.python.org) (I recommend to use python3 directly which will have better support in the future). First, let's start with an IDE. 
 
