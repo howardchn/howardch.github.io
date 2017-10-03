@@ -43,6 +43,10 @@ print(str1[:6])
 print(str1[6:])
 print(str1.upper())
 print(len(str1))
+
+# if we have some ESC, 'r' means 'raw'
+str1 = r'Hello \r\n Howard!'
+print(str1)
 ```
 
 - List
