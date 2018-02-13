@@ -9,7 +9,7 @@ tag: timezone
 - 有时，你也需要考虑把UTC和本地时间都存储下来。常常，我们会考虑把他们分布存储到两个字段里面，但有些平台上，他们可以被存储在一个平台里面，如MSSQL 的datetimeoffset字段(https://docs.microsoft.com/en-us/sql/t-sql/data-types/datetimeoffset-transact-sql); 而这个不是sql标准字段。
 - 当需要把日期存储为数字类型，使用Unix Time (https://en.wikipedia.org/wiki/Unix_time) 如需要精确的时间，请考虑替换为毫秒级别。这个数字基于UTC，没有做任何timezone调整。Java: new Date().getTime(); JS: new Date().getTime() 或 +new Date都可以。
 - 如果以后需要修改这个时间戳，请顺带记录上原来时区的ID，用以判断时间差和原来存储时间比较是否变化了。
-- 如果是为计划未来的定期任务，存储本地时间会比存储UTC更好，因为通常会有时间差的改动。比如使用UTC设置你每天的闹钟，有时候，你将早起来一个小时，夏令时过度到时候，你就会上班迟到一小时了:) https://stackoverflow.com/questions/19626177/how-to-store-repeating-dates-keeping-in-mind-daylight-savings-time/19627330#19627330
+- 如果是为计划未来的定期任务，存储本地时间会比存储UTC更好，因为通常会夏令时的改动。比如冬令时设置你每天的闹钟为早上8点，转换为UTC时间以后，在夏令时期间，你就会上班迟到一小时了:) https://stackoverflow.com/questions/19626177/how-to-store-repeating-dates-keeping-in-mind-daylight-savings-time/19627330#19627330
 - 当你计划一整天的时间，不要转成UTC或者其他任何时区来记录。
     - 数据库里面这种字段尽量不要包含时刻信息。保留到天即可。
     - 如果数据库或存储平台不允许这样做，那么尽量在读取时忽略时刻的意义。如果确实不确定，那么我们尽量采用正午12：00，而不要用午夜0：00来显示这个时刻。
