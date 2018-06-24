@@ -7,8 +7,8 @@ duoshuo: false
 duoshuo_name:
 
 # disqus comment
-disqus: false
-disqus_shortname:
+disqus: true
+disqus_shortname: howardch
 
 # google analytics
 googleTrackId: UA-120362450-1
