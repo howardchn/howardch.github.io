@@ -6,12 +6,13 @@ tag: refactor
 
 It has been a long time I haven’t write st. Here is one thing I’m caring about these days. I reviewed all [my projects in github](https://github.com/howardchn?tab=repositories), and I found one interesting [mini app](https://github.com/howardchn/chooselangguide) I built few years ago. It helps to get a programming language who is proper to learn. I remember when I initially built it, I'm pretty excited on how they way I built it and it looks like. But few monthes later, I picked this up and review this; I could say it sucks. In another word, I'm kindly improved myself in some aspects, especially consider in user's standpoint and software structure. 
 
-# The purpose for this blog and who could read the following content
+## The purpose for this blog
 The main purpose that I write this down is that, I want to see my improvement and make it a checkpoint of it. You know, in the developer's world, if you think your code seems awful and has a lot of space to refactor, that means you already improved your self; and it encourages me to learn more in the near future.
 
-On the other hand, if you are a starter to build apps, the following content might have some points you could consider. You know that the app you are working on is not for your self, consider as more as possible in user's standpoint to make it convenient to use and lower the risky users might be careful  when using the app.
+## who could read the following content
+If you are a starter to build apps, the following content might have some points you could consider. You know that the app you are working on is not for your self, consider as more as possible in user's standpoint to make it convenient to use and lower the risky users might be careful  when using the app.
 
-# Round 1 - overview
+## Round 1 - Overview
 I already found there are thousands of users has tried this app (it is pretty low number, but I'm satisify with it); when I reviewed thie records, I could say, many people just interesting in the first half an hour, then never get back. Why this happens? It seems a practise and challenge I will take.
 
 ![main page](https://github.com/howardchn/chooselangguide/raw/master/preview-1.png)
@@ -31,7 +32,7 @@ For the result page, you will only get the name of the programming language. Hen
 
 That's it for the overview.
 
-# Round 2 - implementation
+## Round 2 - Implementation
 Generally, this is implemented with vuejs + bootstrap + express (node) + mysql.
 
 This is a popular architecture for a normal or even enterprise usage. To be honest, when I design this, my initial imagination is this, so I processed in this way without any doubt.
@@ -42,7 +43,7 @@ The new architecture change is like this.
 
 ![archiecture change](https://github.com/howardchn/which-programming-language/raw/master/assets/blog/structure-changes.png)
 
-#### Get rid of the backend
+#### Get rid of backend
 I already found my mini app is not necessary to have express and nodejs involved. The only purpose for add this level is that, I could add a Sqlite support and store the count of how many people prefers a specific language. To fix this, I searched on google, and found some solutions with some free cloud storage service. [Leancloud](https://leancloud.cn) is the one I used. Leancloud provides me an ability to store/fetch simple data object to cloud and easy to backup. It is pretty nice.
 
 After this simplification, I can get rid of the backend part, then I can only focus on the front end part.

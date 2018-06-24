@@ -4,7 +4,7 @@
 
 # Site
 title: Howard Chen's Blog
-subtitle: A brand new start to an old developer
+subtitle: CODE IS POETRY
 description: Howard Chen's Blog, it talks about my career and new skill.
 author: Howard Chen
 language: en-us
@@ -72,7 +72,7 @@ pagination_dir: page
 # Extensions
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
-theme: landscape
+theme: hacker
 disqus_shortname: howardch
 
 # Deployment
