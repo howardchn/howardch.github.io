@@ -80,5 +80,5 @@ disqus_shortname: howardch
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: https://github.com/howardchn/howardch.github.io.git
+  repo: https://howardchn@github.com/howardchn/howardch.github.io.git
   branch: master
