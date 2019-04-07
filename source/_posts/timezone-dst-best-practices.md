@@ -1,5 +1,5 @@
 ---
-title: 时区和夏令时的最佳实践
+title: Time Zone & Daylight Saving Best Practice
 date: 2018-2-12
 tag: timezone
 ---

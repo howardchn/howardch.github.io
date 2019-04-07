@@ -1,5 +1,5 @@
 ---
-title: 天啊，我九月到底做了些神马？
+title: Gosh, My Naked Resignation in Sept
 date: 2017-09-23
 tag: career
 ---
