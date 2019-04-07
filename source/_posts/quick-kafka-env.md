@@ -4,6 +4,8 @@ date: 2019-04-05
 tag: kafka
 ---
 
+Project at: https://github.com/howardchn/hello-kafka
+
 This is used for setting up a Kafka environment with a simple producer and continuously sending a number per second. You could just build your own client to consume the predefined topics `foobar`.
 
 ## Quick Setup
