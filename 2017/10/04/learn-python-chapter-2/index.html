@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>Learn Python - Module | Howard Chen&#39;s Blog | CODE IS POETRY</title>
+
+  
+  <meta name="author" content="Howard Chen">
+  
+
+  
+  <meta name="description" content="Howard Chen&#39;s Blog, it talks about my career and new skill.">
+  
+
+  
+  
+  <meta name="keywords" content="python">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="Learn Python - Module">
+
+  <meta property="og:site_name" content="Howard Chen&#39;s Blog">
+
+  
+  <meta property="og:image" content="/favicon-v2.ico">
+  
+
+  <link href="/favicon-v2.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Howard Chen&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">Howard Chen&#39;s Blog</a>
+    </h1>
+    <p class="site-description">CODE IS POETRY</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>Learn Python - Module</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2017/10/04/learn-python-chapter-2/" rel="bookmark">
+        <time class="entry-date published" datetime="2017-10-03T16:00:00.000Z">
+          2017-10-04
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>In the <a href="/2017/10/03/learn-python-chapter-1/">previous topic</a>, it includes some really useful points of Python basics. In this page, we will try to use <em>Modules</em> in Python.</p>
+<h2 id="Custom-module"><a href="#Custom-module" class="headerlink" title="Custom module"></a>Custom module</h2><p>There are two ways of using modules. Let’s first create a new Python file names <em>module1.py</em>.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">say_hello</span><span class="params">()</span>:</span> </span><br><span class="line">    print(<span class="string">'Hello Howard.'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>In another Python file that wants to use the functions in the <em>module1.py</em>, we need the following ways to reference this module.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># method 1. note, no file extension here</span></span><br><span class="line"><span class="keyword">import</span> module1 </span><br><span class="line">module1.say_hello()</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># method 2. note, we don't have the module name before the function name</span></span><br><span class="line"><span class="keyword">from</span> module1 <span class="keyword">import</span> say_hello</span><br><span class="line">say_hello()</span><br></pre></td></tr></table></figure>
+<p>Choose the two methods above wisely and it makes your code easier to read.</p>
+<h2 id="Use-a-build-in-module"><a href="#Use-a-build-in-module" class="headerlink" title="Use a build-in module"></a>Use a build-in module</h2><p>We are going to download an image from internet and store in disk. Here is the code.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> request</span><br><span class="line"></span><br><span class="line">url = <span class="string">'https://avatars2.githubusercontent.com/u/8789008?v=4&amp;s=460'</span></span><br><span class="line">filename = <span class="string">'1.jpg'</span></span><br><span class="line">request.urlretrieve(url, filename)</span><br></pre></td></tr></table></figure></p>
+<p>In this code, we import an <em>urllib</em> module. You could use any module like this to support various requirements.</p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/python/">python</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+  
+	<section id="comment" class="comment">
+	  <div id="disqus_thread">
+	  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	  </div>
+	</section>
+
+	<script type="text/javascript">
+	var disqus_shortname = 'howardch';
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	</script>
+
+
+
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2019 Howard Chen
+    
+  </p>
+</footer>
+    
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120362450-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120362450-1');
+</script>
+
+
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE HTML>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>A Mini App Refactor | Howard Chen&#39;s Blog | CODE IS POETRY</title>
+
+  
+  <meta name="author" content="Howard Chen">
+  
+
+  
+  <meta name="description" content="Howard Chen&#39;s Blog, it talks about my career and new skill.">
+  
+
+  
+  
+  <meta name="keywords" content="refactor">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="A Mini App Refactor">
+
+  <meta property="og:site_name" content="Howard Chen&#39;s Blog">
+
+  
+  <meta property="og:image" content="/favicon-v2.ico">
+  
+
+  <link href="/favicon-v2.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Howard Chen&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">Howard Chen&#39;s Blog</a>
+    </h1>
+    <p class="site-description">CODE IS POETRY</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>A Mini App Refactor</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2018/06/24/one-mini-project-refactor/" rel="bookmark">
+        <time class="entry-date published" datetime="2018-06-23T16:00:00.000Z">
+          2018-06-24
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p><a href="http://howardchn.github.io/which-programming-language/#/">Try it first</a> and <a href>project in github</a>.</p>
+<p>It has been a long time I haven’t write st. Here is one thing I’m caring about these days. I reviewed all <a href="https://github.com/howardchn?tab=repositories" target="_blank" rel="noopener">my projects in github</a>, and I found one interesting <a href="https://github.com/howardchn/chooselangguide" target="_blank" rel="noopener">mini app</a> I built few years ago. It helps to get a programming language who is proper to learn. I remember when I initially built it, I’m pretty excited on how they way I built it and it looks like. But few monthes later, I picked this up and review this; I could say it sucks. In another word, I’m kindly improved myself in some aspects, especially consider in user’s standpoint and software structure. </p>
+<h2 id="The-purpose-for-this-blog"><a href="#The-purpose-for-this-blog" class="headerlink" title="The purpose for this blog"></a>The purpose for this blog</h2><p>The main purpose that I write this down is that, I want to see my improvement and make it a checkpoint of it. You know, in the developer’s world, if you think your code seems awful and has a lot of space to refactor, that means you already improved your self; and it encourages me to learn more in the near future.</p>
+<h2 id="who-could-read-the-following-content"><a href="#who-could-read-the-following-content" class="headerlink" title="who could read the following content"></a>who could read the following content</h2><p>If you are a starter to build apps, the following content might have some points you could consider. You know that the app you are working on is not for your self, consider as more as possible in user’s standpoint to make it convenient to use and lower the risky users might be careful  when using the app.</p>
+<h2 id="Round-1-Overview"><a href="#Round-1-Overview" class="headerlink" title="Round 1 - Overview"></a>Round 1 - Overview</h2><p>I already found there are thousands of users has tried this app (it is pretty low number, but I’m satisify with it); when I reviewed thie records, I could say, many people just interesting in the first half an hour, then never get back. Why this happens? It seems a practise and challenge I will take.</p>
+<p><img src="https://github.com/howardchn/chooselangguide/raw/master/preview-1.png" alt="main page"></p>
+<p>This is a preview of the app. When I enter this page, I found several issues.</p>
+<ol>
+<li>The major point is that, why I need user name in the first page? I doesn’t useful for my statistics. I will get rid of it first or move it to the end if someone wants to leave names to encourage me.</li>
+<li>What’s this app for? There is no brief introduction about this. So a simple short introduction is necessary.</li>
+<li>The title is too lang. Consider to make it shorter.</li>
+<li>It is not friendly to web browser. Don’t have too much idea for this. Consider it later.</li>
+</ol>
+<p>For the result page, you will only get the name of the programming language. Henn… If I could get more detail about the programming language, that would be better. For example, we could provide following items.</p>
+<ol>
+<li>The feature of it.</li>
+<li>The difficulty of learning it.</li>
+<li>The popularity of this language.</li>
+<li>Which big company is using this technology.<br><img src="https://github.com/howardchn/which-programming-language/raw/master/assets/blog/one-result.png" alt="result change"></li>
+</ol>
+<p>That’s it for the overview.</p>
+<h2 id="Round-2-Implementation"><a href="#Round-2-Implementation" class="headerlink" title="Round 2 - Implementation"></a>Round 2 - Implementation</h2><p>Generally, this is implemented with vuejs + bootstrap + express (node) + mysql.</p>
+<p>This is a popular architecture for a normal or even enterprise usage. To be honest, when I design this, my initial imagination is this, so I processed in this way without any doubt.</p>
+<p>This time, I found it could much simpler. For the architecture designing, <em>there is not a best architecture, but only has the proper architecture</em>. I could choose a popular architecture for your app, but it might not the proper one; it might make your development and maintainance harder.</p>
+<p>The new architecture change is like this.</p>
+<p><img src="https://github.com/howardchn/which-programming-language/raw/master/assets/blog/structure-changes.png" alt="archiecture change"></p>
+<h4 id="Get-rid-of-backend"><a href="#Get-rid-of-backend" class="headerlink" title="Get rid of backend"></a>Get rid of backend</h4><p>I already found my mini app is not necessary to have express and nodejs involved. The only purpose for add this level is that, I could add a Sqlite support and store the count of how many people prefers a specific language. To fix this, I searched on google, and found some solutions with some free cloud storage service. <a href="https://leancloud.cn" target="_blank" rel="noopener">Leancloud</a> is the one I used. Leancloud provides me an ability to store/fetch simple data object to cloud and easy to backup. It is pretty nice.</p>
+<p>After this simplification, I can get rid of the backend part, then I can only focus on the front end part.</p>
+<h4 id="Improve-frontend"><a href="#Improve-frontend" class="headerlink" title="Improve frontend"></a>Improve frontend</h4><p>It is hard to describe. Frontend is fansy and lots of technology and framework. Although I choose <em>vuejs</em> as basic framework, but the question is “am I using it the correct way?”. I might have another blog to represent this vuejs refactor experience.</p>
+<p>About the <em>pack and deployment</em>, I used to use <a href="https://gulpjs.com" target="_blank" rel="noopener">gulp</a>. With this, I can define several gulp tasks and group the tasks together for building, deployment etc. After I learned <em>webpack</em>, I found it is my favorite one. I don’t need to copy many gulp tasks from one project to another; I don’t need to define many customized tasks; I can merge my css files, styles and many js modules to one file to ship it out… I will try to use webpack unless something it doesn’t support.</p>
+<h4 id="Deployment"><a href="#Deployment" class="headerlink" title="Deployment"></a>Deployment</h4><p>The deloyment is a headache before. Due to the Sqlite and express level, I need to setup a web server on linux host. It is pretty expensive. Fortunately, I have one, so I can host it in my existing host. While now, I removed the backend support, this app becomes a pure static web app. I can host it on <a href="https://github.com/howardchn/which-programming-language" target="_blank" rel="noopener">github</a> and ship it with <a href="http://howardchn.github.io/which-programming-language">github pages</a> without extra cost.</p>
+<h1 id="Follow-up-and-wrap-up"><a href="#Follow-up-and-wrap-up" class="headerlink" title="Follow up and wrap up"></a>Follow up and wrap up</h1><p>At this step, I’m satisfy with current refactor. But there are still st. I can improve more. I will do it once I have time with following improvement.</p>
+<ol>
+<li>Add a statistics on represents a ratio of the programming language.</li>
+<li>Allow to leave message.</li>
+<li>Allow to share the result on wechat or some popular social apps.</li>
+<li>Check the result of your history.</li>
+<li>Any suggestion from feedback.</li>
+</ol>
+<p>See you later. I appreciate any feedback by contact me on <a href="www.linkedin.com/in/howard-chen-328493142">Linkedin</a> or <a href="mailto:howardch@outlook.com" target="_blank" rel="noopener">email</a>.</p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/refactor/">refactor</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+  
+	<section id="comment" class="comment">
+	  <div id="disqus_thread">
+	  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	  </div>
+	</section>
+
+	<script type="text/javascript">
+	var disqus_shortname = 'howardch';
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	</script>
+
+
+
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2019 Howard Chen
+    
+  </p>
+</footer>
+    
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120362450-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120362450-1');
+</script>
+
+
+  </div>
+</div>
+</body>
+</html>

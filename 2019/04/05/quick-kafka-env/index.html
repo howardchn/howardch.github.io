@@ -1,0 +1,186 @@
+<!DOCTYPE HTML>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>Quick Setup Your Local Kafka Env | Howard Chen&#39;s Blog | CODE IS POETRY</title>
+
+  
+  <meta name="author" content="Howard Chen">
+  
+
+  
+  <meta name="description" content="Howard Chen&#39;s Blog, it talks about my career and new skill.">
+  
+
+  
+  
+  <meta name="keywords" content="kafka">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="Quick Setup Your Local Kafka Env">
+
+  <meta property="og:site_name" content="Howard Chen&#39;s Blog">
+
+  
+  <meta property="og:image" content="/favicon-v2.ico">
+  
+
+  <link href="/favicon-v2.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Howard Chen&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">Howard Chen&#39;s Blog</a>
+    </h1>
+    <p class="site-description">CODE IS POETRY</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>Quick Setup Your Local Kafka Env</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2019/04/05/quick-kafka-env/" rel="bookmark">
+        <time class="entry-date published" datetime="2019-04-04T16:00:00.000Z">
+          2019-04-05
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>Project at: <a href="https://github.com/howardchn/hello-kafka" target="_blank" rel="noopener">https://github.com/howardchn/hello-kafka</a></p>
+<p>This is used for setting up a Kafka environment with a simple producer and continuously sending a number per second. You could just build your own client to consume the predefined topics <code>foobar</code>.</p>
+<h2 id="Quick-Setup"><a href="#Quick-Setup" class="headerlink" title="Quick Setup"></a>Quick Setup</h2><p>For quick start, only the following commands will be ready to go.</p>
+<p>Note: before running the following commands, make sure the following items are installed.</p>
+<h3 id="Prerequisite"><a href="#Prerequisite" class="headerlink" title="Prerequisite"></a>Prerequisite</h3><ol>
+<li><a href="https://docs.docker.com/get-started/" target="_blank" rel="noopener">docker</a> CE or EE</li>
+<li><a href="https://docs.docker.com/compose/install/" target="_blank" rel="noopener">docker composer</a></li>
+<li>ports <code>2181</code>, <code>9092</code> and <code>29092</code> are not in using</li>
+</ol>
+<h3 id="Launch-The-Service"><a href="#Launch-The-Service" class="headerlink" title="Launch The Service"></a>Launch The Service</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd [your work directory]</span><br><span class="line">curl https://raw.githubusercontent.com/howardchn/hello-kafka/master/docker-compose.yaml -o docker-compose-kafka.yaml</span><br><span class="line">docker-compose -f docker-compose-kafka.yaml up</span><br></pre></td></tr></table></figure>
+<p>Then wait about <code>15</code> seconds, the <code>zookeeper</code>, <code>kafka</code> and <code>default simple producer</code> are ready.</p>
+<h2 id="Build-Your-Own-Producer"><a href="#Build-Your-Own-Producer" class="headerlink" title="Build Your Own Producer"></a>Build Your Own Producer</h2><p>The integrated producer has hard-coded topic name <code>foolbar</code> nad the key is <code>Null</code> (not defined), the content is an <code>incremented number</code> and the sending interval is <code>1 second</code>. Seems lots of restriction inside. The following steps will help to customize your own producer and docker images.</p>
+<ol>
+<li>modify <code>main.py</code> which is the implementation of the producer</li>
+<li>build docker image with <code>docker build -t [your producer image name] .</code></li>
+<li>replace the producer image <code>howardch/hello-kafka-producer</code> with <code>[your producer image name]</code> in <code>docker-compose.yaml</code> file</li>
+<li>everything is set, execute command <code>docker-compose up -d</code> to run your own environment</li>
+</ol>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/kafka/">kafka</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+  
+	<section id="comment" class="comment">
+	  <div id="disqus_thread">
+	  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	  </div>
+	</section>
+
+	<script type="text/javascript">
+	var disqus_shortname = 'howardch';
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	</script>
+
+
+
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2019 Howard Chen
+    
+  </p>
+</footer>
+    
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120362450-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120362450-1');
+</script>
+
+
+  </div>
+</div>
+</body>
+</html>

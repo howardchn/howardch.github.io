@@ -1,0 +1,201 @@
+<!DOCTYPE HTML>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>Time Zone &amp; Daylight Saving Best Practice | Howard Chen&#39;s Blog | CODE IS POETRY</title>
+
+  
+  <meta name="author" content="Howard Chen">
+  
+
+  
+  <meta name="description" content="Howard Chen&#39;s Blog, it talks about my career and new skill.">
+  
+
+  
+  
+  <meta name="keywords" content="timezone">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="Time Zone &amp; Daylight Saving Best Practice">
+
+  <meta property="og:site_name" content="Howard Chen&#39;s Blog">
+
+  
+  <meta property="og:image" content="/favicon-v2.ico">
+  
+
+  <link href="/favicon-v2.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Howard Chen&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">Howard Chen&#39;s Blog</a>
+    </h1>
+    <p class="site-description">CODE IS POETRY</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>Time Zone &amp; Daylight Saving Best Practice</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2018/02/12/timezone-dst-best-practices/" rel="bookmark">
+        <time class="entry-date published" datetime="2018-02-11T16:00:00.000Z">
+          2018-02-12
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>每当别人问起怎么存储时间信息的时候，我都会告诉别人，用统一的UTC时间来存储。结果，我一直都错了。这里整理了一份对于时间存储的列表，希望能对你的时间存储行为带来最佳实践。</p>
+<h3 id="一定要这样做"><a href="#一定要这样做" class="headerlink" title="一定要这样做:"></a>一定要这样做:</h3><ul>
+<li>当需要一个确定时刻，保留一个持续化的并和夏令时无关的统一时间。GMT和UTC都适用于这种情况，但UTC会好一些。GMT是一个时区，而UTC是一个标准。</li>
+<li>如果选择存储本地时间的话，请把本地时间和UTC时间的时间偏移也记录下来。注意，时间偏移值在一年中的某些月份可能会变。这样后面使用的时候才能被计算成确切时间。</li>
+<li>有时，你也需要考虑把UTC和本地时间都存储下来。常常，我们会考虑把他们分布存储到两个字段里面，但有些平台上，他们可以被存储在一个平台里面，如MSSQL 的datetimeoffset字段(<a href="https://docs.microsoft.com/en-us/sql/t-sql/data-types/datetimeoffset-transact-sql)" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/sql/t-sql/data-types/datetimeoffset-transact-sql)</a>; 而这个不是sql标准字段。</li>
+<li>当需要把日期存储为数字类型，使用Unix Time (<a href="https://en.wikipedia.org/wiki/Unix_time" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Unix_time</a>) 如需要精确的时间，请考虑替换为毫秒级别。这个数字基于UTC，没有做任何timezone调整。Java: new Date().getTime(); JS: new Date().getTime() 或 +new Date都可以。</li>
+<li>如果以后需要修改这个时间戳，请顺带记录上原来时区的ID，用以判断时间偏移和原来存储时间比较是否变化了。</li>
+<li>如果是为计划未来的定期任务，存储本地时间会比存储UTC更好，因为通常会夏令时的改动。比如冬令时设置你每天的闹钟为早上8点，转换为UTC时间以后，在夏令时期间，你就会上班迟到一小时了:) <a href="https://stackoverflow.com/questions/19626177/how-to-store-repeating-dates-keeping-in-mind-daylight-savings-time/19627330#19627330" target="_blank" rel="noopener">https://stackoverflow.com/questions/19626177/how-to-store-repeating-dates-keeping-in-mind-daylight-savings-time/19627330#19627330</a></li>
+<li>当你计划一整天的时间，不要转成UTC或者其他任何时区来记录。<ul>
+<li>数据库里面这种字段尽量不要包含时刻信息。保留到天即可。</li>
+<li>如果数据库或存储平台不允许这样做，那么尽量在读取时忽略时刻的意义。如果确实不确定，那么我们尽量采用正午12：00，而不要用午夜0：00来显示这个时刻。</li>
+</ul>
+</li>
+<li>注意时区差并不是永远都是整数。比如Indian Standard Time is UTC+05:30, and Nepal uses UTC+05:45</li>
+<li>相比UTC或者GMT，很多商业规则使用Civil time会更多。安排计划时需要把UTC时间戳转换到本地时区。</li>
+<li>时区(Timezone)和时间偏移值(Time Offsets)不一样，时区不会变，而时间偏移值在一年中可能会变可能会变。比如洛杉矶的时区是IANA，在夏令时的时候时间偏移值为UTC-7，冬令时的时间偏移值为UTC-8，和它相邻的亚利桑那州不存在夏令时，时间偏移值一直保持UTC-7。</li>
+<li>考虑时间类型（确定时间，海外时间，相对时间，历史时间，计划循环时间），你需要采用不同的存储方式保证时间不会缺失。</li>
+<li>让你的操作系统，数据库和应用程序保持一致。</li>
+<li>服务器上，设置硬件时钟和操作系统时钟为UTC时间，非本地时间。</li>
+<li>服务器端代码，包含网站，永远不要指望服务器本地时间能有意义。</li>
+<li>根据你的应用，把时间的设置分成若干种类，对于不同的种类设计适当的存储方案。不要做全局设置。</li>
+<li>服务器使用网络时间协议</li>
+<li>考虑在FAT32/16的设备上使用本地时间。理由比较奇葩。比如在DOS时代，个人电脑都没有网络功能，时间都是使用Bios时间，存储在3.5寸软盘上。那时人们完全不会关心软盘上面存储的时间，而会使用铅笔在盘面上写下处理时间。因此这些时间不会准确。回到现在，很多移动设备，比如相机等还在使用FAT类型格式； 当你在另一个时区时，这些时间不会被改变，如果存储时间戳，就会导致存储时间的混乱。所以存储本地时间会更好。</li>
+<li>当设置周期时间时，比如跟美剧，每周一集更新那种，记住时间会因为夏令时，在不同时区会有不同。</li>
+<li>使用&gt;=判断下限，用&lt;判断上限。</li>
+</ul>
+<h3 id="千万不要这样做"><a href="#千万不要这样做" class="headerlink" title="千万不要这样做:"></a>千万不要这样做:</h3><ul>
+<li>不要混淆时区（America/New York）和时区偏移（UTC-5:00），他们是两种概念。<a href="https://stackoverflow.com/tags/timezone/info" target="_blank" rel="noopener">https://stackoverflow.com/tags/timezone/info</a></li>
+<li>不要在老浏览器，ES5.1及以前版本使用javascript的Date对象，因为他们在使用夏令时计算的时候会有问题。ES6已经修复。</li>
+<li>不要使用客户端时间，至少我不能保证你浏览器上时间时正确的。</li>
+<li>不要再告诉别人，都用UTC时间了，虽然这种事我也做过。正确的做法是根据场景，选择对用的存储方式。</li>
+</ul>
+<h3 id="最后总结"><a href="#最后总结" class="headerlink" title="最后总结"></a>最后总结</h3><p>在涉及到时间存储的问题上，一定要谨慎。把场景列出来以后再考虑适当的存储方式。一个简单的例子，我想过滤出今天所有的日志信息。想想，可能会出现几种不同的场景？所以一般通用的解决方案会把local_time, utc_time, local_tz都存下来。现今最长的timezone是“America/Argentina/ComodRivadavia”， 共32个字符。</p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/timezone/">timezone</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+  
+	<section id="comment" class="comment">
+	  <div id="disqus_thread">
+	  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	  </div>
+	</section>
+
+	<script type="text/javascript">
+	var disqus_shortname = 'howardch';
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	</script>
+
+
+
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2019 Howard Chen
+    
+  </p>
+</footer>
+    
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120362450-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120362450-1');
+</script>
+
+
+  </div>
+</div>
+</body>
+</html>

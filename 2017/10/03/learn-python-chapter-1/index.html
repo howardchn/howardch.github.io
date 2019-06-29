@@ -1,0 +1,214 @@
+<!DOCTYPE HTML>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>Learn Python - Basics | Howard Chen&#39;s Blog | CODE IS POETRY</title>
+
+  
+  <meta name="author" content="Howard Chen">
+  
+
+  
+  <meta name="description" content="Howard Chen&#39;s Blog, it talks about my career and new skill.">
+  
+
+  
+  
+  <meta name="keywords" content="python">
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <meta property="og:title" content="Learn Python - Basics">
+
+  <meta property="og:site_name" content="Howard Chen&#39;s Blog">
+
+  
+  <meta property="og:image" content="/favicon-v2.ico">
+  
+
+  <link href="/favicon-v2.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Howard Chen&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">Howard Chen&#39;s Blog</a>
+    </h1>
+    <p class="site-description">CODE IS POETRY</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    <article>
+
+  
+    
+    <h3 class="article-title"><span>Learn Python - Basics</span></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2017/10/03/learn-python-chapter-1/" rel="bookmark">
+        <time class="entry-date published" datetime="2017-10-02T16:00:00.000Z">
+          2017-10-03
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>It is very excited to learn <a href="https://www.python.org" target="_blank" rel="noopener">python</a> (I recommend to use python3 directly which will have better support in the future). First, let’s start with an IDE. </p>
+<p>Here are three IDEs I like very much.</p>
+<ul>
+<li><em>IDLE</em>, it is installed along with the Python installer, which provides a powerful shell of playing with python. </li>
+<li><em>PyCharm</em>, <a href="https://jetbrains.com" target="_blank" rel="noopener">JetBrains</a> provides the most powerful IDE for python, it supports many useful functions like refactoring, lint and so on.</li>
+<li><em>VSCode</em> is a lightweight IDE for python as well, but you need to install some plugins to support python better. Here are plugins recommended.<ul>
+<li><em>Code Runner</em> for executing python</li>
+<li><em>Python</em> support code intellisence, code formatting, auto indent etc.</li>
+<li><em>Pylint</em> is recommended as well.</li>
+</ul>
+</li>
+</ul>
+<p>Here are some points for python, I will make it simple as possible.</p>
+<ul>
+<li><p>Number</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">number = 51</span><br><span class="line">print(number)</span><br><span class="line"></span><br><span class="line">number = 51.3</span><br><span class="line">print(number)</span><br><span class="line"></span><br><span class="line">number1 = number / 2</span><br><span class="line">print(number1)</span><br><span class="line"></span><br><span class="line">number2 = number // 2</span><br><span class="line">print(number2)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>String</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">str = &quot;Hello World&quot;</span><br><span class="line">print(str)</span><br><span class="line"></span><br><span class="line">str1 = &apos;Hello World&apos;</span><br><span class="line">print(str1)</span><br><span class="line">print(str1[0:2])</span><br><span class="line">print(str1[:6])</span><br><span class="line">print(str1[6:])</span><br><span class="line">print(str1.upper())</span><br><span class="line">print(len(str1))</span><br><span class="line"></span><br><span class="line"># if we have some ESC, &apos;r&apos; means &apos;raw&apos;</span><br><span class="line">str1 = r&apos;Hello \r\n Howard!&apos;</span><br><span class="line">print(str1)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>List</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">ls = [1, 2, 3, 4, 5]</span><br><span class="line">print(len(ls))</span><br><span class="line"></span><br><span class="line">ls.append(6)</span><br><span class="line">print(ls)</span><br><span class="line"></span><br><span class="line">ls1 = ls + [7, 8]</span><br><span class="line">print(ls1)</span><br><span class="line"></span><br><span class="line">ls2 = ls1[:2]</span><br><span class="line">print(ls2)</span><br><span class="line"></span><br><span class="line">ls3 = range(0, 10)</span><br><span class="line">for i in ls3: print(i)</span><br><span class="line"></span><br><span class="line">ls3 = range(2, 10)</span><br><span class="line">for i in ls3: print(i)</span><br><span class="line"></span><br><span class="line">ls3 = range(0, 16, 4)</span><br><span class="line">for i in ls3: print(i)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>if: elif: else (note: <code>is</code> and <code>==</code> are both fine to check the equalvity)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s = &apos;s&apos;</span><br><span class="line">if(s == &apos;a&apos;): print(&apos;alpha&apos;)</span><br><span class="line">elif(s is &apos;b&apos;): print(&apos;beta&apos;)</span><br><span class="line">elif(s is &apos;s&apos;): print(&apos;superman&apos;)</span><br><span class="line">else: print(&apos;unknown&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>for loop</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">items = [1, 4, 2, 6, 9, 7]</span><br><span class="line">for i in items: </span><br><span class="line">    print(i)</span><br><span class="line"></span><br><span class="line">for i in items[:4]:</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>while loop (note: <code>while</code>, <code>is</code>, <code>break</code>, <code>continue</code>)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">i = 0</span><br><span class="line">while i &lt; 10:</span><br><span class="line">    print(i)</span><br><span class="line">    i += 1</span><br><span class="line">    if i is 5: break</span><br><span class="line">    else: continue</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Comments (single-line and multi-line)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># num = 20</span></span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">str = 'hello'</span></span><br><span class="line"><span class="string">str += ' world'</span></span><br><span class="line"><span class="string">print(str)</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Function</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"># void</span><br><span class="line">def say_hello(name): </span><br><span class="line">    print(&apos;Hello&apos;, name)</span><br><span class="line"></span><br><span class="line">say_hello(&apos;Howard&apos;)</span><br><span class="line"></span><br><span class="line"># with return value</span><br><span class="line">def get_hello_message(name):</span><br><span class="line">    return &apos;Hello &apos; + name</span><br><span class="line"></span><br><span class="line">print(get_hello_message(&apos;Howard&apos;))</span><br><span class="line"></span><br><span class="line"># with default value</span><br><span class="line">def say_hello_with_default_value(name = &apos;Howard&apos;):</span><br><span class="line">    print(&apos;Hello&apos;, name)</span><br><span class="line">say_hello_with_default_value()</span><br><span class="line">say_hello_with_default_value(&apos;Bibioo&apos;)</span><br><span class="line"></span><br><span class="line"># with optional parameters</span><br><span class="line">def someone_do_something(name = &apos;Howard&apos;, action = &apos;ate&apos;, something = &apos;an apple&apos;):</span><br><span class="line">    print(name, action, something)</span><br><span class="line"></span><br><span class="line">someone_do_something()</span><br><span class="line">someone_do_something(&apos;Bibioo&apos;, &apos;is&apos;, &apos;awesome&apos;)</span><br><span class="line">someone_do_something(something = &apos;us&apos;, action = &apos;blesses&apos;, name = &apos;God&apos;)</span><br><span class="line"></span><br><span class="line"># flexibale variables</span><br><span class="line">def flexible_var(*args):</span><br><span class="line">    print(&apos;it has&apos;, len(args), &apos;arguments&apos;)</span><br><span class="line">    for i in args:</span><br><span class="line">        print(i)</span><br><span class="line">flexible_var(&apos;a&apos;, &apos;b&apos;, &apos;c&apos;)</span><br><span class="line"></span><br><span class="line"># unpack aruments, watch out the compare of the last two calls</span><br><span class="line">def unpack_arguments(age, apple_pw, smook_pw):</span><br><span class="line">    health = (100 - age) + (apple_pw * 3.5) - (smook_pw * 4.5)</span><br><span class="line">    print(health)</span><br><span class="line"></span><br><span class="line">person_data = [35, 7, 0]</span><br><span class="line">unpack_arguments(person_data[0], person_data[1], person_data[2])</span><br><span class="line">unpack_arguments(*person_data)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Set</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">my_shopping_cart = &#123;&apos;apple&apos;, &apos;milk&apos;, &apos;beer&apos;, &apos;milk&apos;&#125;</span><br><span class="line">print(my_shopping_cart)</span><br><span class="line">print(len(my_shopping_cart))</span><br><span class="line">print(&apos;milk&apos; in my_shopping_cart)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Dictionary (watch out the three different loops)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">classmates = &#123; &apos;Tony&apos;: &apos;cool but smells&apos;, &apos;Emma&apos;: &apos;sits behind me&apos;, &apos;Lucy&apos;: &apos;asks me too much questions&apos; &#125;</span><br><span class="line">print(len(classmates))</span><br><span class="line">print(classmates[&apos;Tony&apos;])</span><br><span class="line">for i in classmates:</span><br><span class="line">    print(i)</span><br><span class="line">for i in classmates.items():</span><br><span class="line">    print(i)</span><br><span class="line">for k, v in classmates.items():</span><br><span class="line">    print(k, v)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>Now here are the basics for Python to remember, get back if need to recall the points, I will do more excited thing in the next part.</p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/python/">python</a>
+    </span>
+    
+
+    </div>
+
+    
+  </div>
+</article>
+
+  
+	<section id="comment" class="comment">
+	  <div id="disqus_thread">
+	  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+	  </div>
+	</section>
+
+	<script type="text/javascript">
+	var disqus_shortname = 'howardch';
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	(function(){
+	  var dsq = document.createElement('script');
+	  dsq.type = 'text/javascript';
+	  dsq.async = true;
+	  dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+	  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	}());
+	</script>
+
+
+
+
+
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2019 Howard Chen
+    
+  </p>
+</footer>
+    
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120362450-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120362450-1');
+</script>
+
+
+  </div>
+</div>
+</body>
+</html>

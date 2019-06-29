@@ -1,0 +1,692 @@
+<!DOCTYPE HTML>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>Howard Chen&#39;s Blog | CODE IS POETRY</title>
+
+  
+  <meta name="author" content="Howard Chen">
+  
+
+  
+  <meta name="description" content="Howard Chen&#39;s Blog, it talks about my career and new skill.">
+  
+
+  
+
+  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  
+
+  <meta property="og:site_name" content="Howard Chen&#39;s Blog">
+
+  
+  <meta property="og:image" content="/favicon-v2.ico">
+  
+
+  <link href="/favicon-v2.ico" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Howard Chen&#39;s Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+</head>
+
+
+<body>
+<div class="blog">
+  <div class="content">
+
+    <header>
+  <div class="site-branding">
+    <h1 class="site-title">
+      <a href="/">Howard Chen&#39;s Blog</a>
+    </h1>
+    <p class="site-description">CODE IS POETRY</p>
+  </div>
+  <nav class="site-navigation">
+    <ul>
+      
+        <li><a href="/">Home</a></li>
+      
+        <li><a href="/archives">Archives</a></li>
+      
+    </ul>
+  </nav>
+</header>
+
+    <main class="site-main posts-loop">
+    
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/2019/04/05/quick-kafka-env/"><span>Quick Setup Your Local Kafka Env</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2019/04/05/quick-kafka-env/" rel="bookmark">
+        <time class="entry-date published" datetime="2019-04-04T16:00:00.000Z">
+          2019-04-05
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>Project at: <a href="https://github.com/howardchn/hello-kafka" target="_blank" rel="noopener">https://github.com/howardchn/hello-kafka</a></p>
+<p>This is used for setting up a Kafka environment with a simple producer and continuously sending a number per second. You could just build your own client to consume the predefined topics <code>foobar</code>.</p>
+<h2 id="Quick-Setup"><a href="#Quick-Setup" class="headerlink" title="Quick Setup"></a>Quick Setup</h2><p>For quick start, only the following commands will be ready to go.</p>
+<p>Note: before running the following commands, make sure the following items are installed.</p>
+<h3 id="Prerequisite"><a href="#Prerequisite" class="headerlink" title="Prerequisite"></a>Prerequisite</h3><ol>
+<li><a href="https://docs.docker.com/get-started/" target="_blank" rel="noopener">docker</a> CE or EE</li>
+<li><a href="https://docs.docker.com/compose/install/" target="_blank" rel="noopener">docker composer</a></li>
+<li>ports <code>2181</code>, <code>9092</code> and <code>29092</code> are not in using</li>
+</ol>
+<h3 id="Launch-The-Service"><a href="#Launch-The-Service" class="headerlink" title="Launch The Service"></a>Launch The Service</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd [your work directory]</span><br><span class="line">curl https://raw.githubusercontent.com/howardchn/hello-kafka/master/docker-compose.yaml -o docker-compose-kafka.yaml</span><br><span class="line">docker-compose -f docker-compose-kafka.yaml up</span><br></pre></td></tr></table></figure>
+<p>Then wait about <code>15</code> seconds, the <code>zookeeper</code>, <code>kafka</code> and <code>default simple producer</code> are ready.</p>
+<h2 id="Build-Your-Own-Producer"><a href="#Build-Your-Own-Producer" class="headerlink" title="Build Your Own Producer"></a>Build Your Own Producer</h2><p>The integrated producer has hard-coded topic name <code>foolbar</code> nad the key is <code>Null</code> (not defined), the content is an <code>incremented number</code> and the sending interval is <code>1 second</code>. Seems lots of restriction inside. The following steps will help to customize your own producer and docker images.</p>
+<ol>
+<li>modify <code>main.py</code> which is the implementation of the producer</li>
+<li>build docker image with <code>docker build -t [your producer image name] .</code></li>
+<li>replace the producer image <code>howardch/hello-kafka-producer</code> with <code>[your producer image name]</code> in <code>docker-compose.yaml</code> file</li>
+<li>everything is set, execute command <code>docker-compose up -d</code> to run your own environment</li>
+</ol>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/kafka/">kafka</a>
+    </span>
+    
+
+    </div>
+
+    
+    <div class="article-meta pull-right">
+      <span>
+        <i class="icon-comments"></i>
+        <span>
+          <a href="/2019/04/05/quick-kafka-env/#comment">Comments</a>
+        </span>
+      </span>
+    </div>
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/2018/06/24/one-mini-project-refactor/"><span>A Mini App Refactor</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2018/06/24/one-mini-project-refactor/" rel="bookmark">
+        <time class="entry-date published" datetime="2018-06-23T16:00:00.000Z">
+          2018-06-24
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p><a href="http://howardchn.github.io/which-programming-language/#/">Try it first</a> and <a href>project in github</a>.</p>
+<p>It has been a long time I haven’t write st. Here is one thing I’m caring about these days. I reviewed all <a href="https://github.com/howardchn?tab=repositories" target="_blank" rel="noopener">my projects in github</a>, and I found one interesting <a href="https://github.com/howardchn/chooselangguide" target="_blank" rel="noopener">mini app</a> I built few years ago. It helps to get a programming language who is proper to learn. I remember when I initially built it, I’m pretty excited on how they way I built it and it looks like. But few monthes later, I picked this up and review this; I could say it sucks. In another word, I’m kindly improved myself in some aspects, especially consider in user’s standpoint and software structure. </p>
+<h2 id="The-purpose-for-this-blog"><a href="#The-purpose-for-this-blog" class="headerlink" title="The purpose for this blog"></a>The purpose for this blog</h2><p>The main purpose that I write this down is that, I want to see my improvement and make it a checkpoint of it. You know, in the developer’s world, if you think your code seems awful and has a lot of space to refactor, that means you already improved your self; and it encourages me to learn more in the near future.</p>
+<h2 id="who-could-read-the-following-content"><a href="#who-could-read-the-following-content" class="headerlink" title="who could read the following content"></a>who could read the following content</h2><p>If you are a starter to build apps, the following content might have some points you could consider. You know that the app you are working on is not for your self, consider as more as possible in user’s standpoint to make it convenient to use and lower the risky users might be careful  when using the app.</p>
+<h2 id="Round-1-Overview"><a href="#Round-1-Overview" class="headerlink" title="Round 1 - Overview"></a>Round 1 - Overview</h2><p>I already found there are thousands of users has tried this app (it is pretty low number, but I’m satisify with it); when I reviewed thie records, I could say, many people just interesting in the first half an hour, then never get back. Why this happens? It seems a practise and challenge I will take.</p>
+<p><img src="https://github.com/howardchn/chooselangguide/raw/master/preview-1.png" alt="main page"></p>
+<p>This is a preview of the app. When I enter this page, I found several issues.</p>
+<ol>
+<li>The major point is that, why I need user name in the first page? I doesn’t useful for my statistics. I will get rid of it first or move it to the end if someone wants to leave names to encourage me.</li>
+<li>What’s this app for? There is no brief introduction about this. So a simple short introduction is necessary.</li>
+<li>The title is too lang. Consider to make it shorter.</li>
+<li>It is not friendly to web browser. Don’t have too much idea for this. Consider it later.</li>
+</ol>
+<p>For the result page, you will only get the name of the programming language. Henn… If I could get more detail about the programming language, that would be better. For example, we could provide following items.</p>
+<ol>
+<li>The feature of it.</li>
+<li>The difficulty of learning it.</li>
+<li>The popularity of this language.</li>
+<li>Which big company is using this technology.<br><img src="https://github.com/howardchn/which-programming-language/raw/master/assets/blog/one-result.png" alt="result change"></li>
+</ol>
+<p>That’s it for the overview.</p>
+<h2 id="Round-2-Implementation"><a href="#Round-2-Implementation" class="headerlink" title="Round 2 - Implementation"></a>Round 2 - Implementation</h2><p>Generally, this is implemented with vuejs + bootstrap + express (node) + mysql.</p>
+<p>This is a popular architecture for a normal or even enterprise usage. To be honest, when I design this, my initial imagination is this, so I processed in this way without any doubt.</p>
+<p>This time, I found it could much simpler. For the architecture designing, <em>there is not a best architecture, but only has the proper architecture</em>. I could choose a popular architecture for your app, but it might not the proper one; it might make your development and maintainance harder.</p>
+<p>The new architecture change is like this.</p>
+<p><img src="https://github.com/howardchn/which-programming-language/raw/master/assets/blog/structure-changes.png" alt="archiecture change"></p>
+<h4 id="Get-rid-of-backend"><a href="#Get-rid-of-backend" class="headerlink" title="Get rid of backend"></a>Get rid of backend</h4><p>I already found my mini app is not necessary to have express and nodejs involved. The only purpose for add this level is that, I could add a Sqlite support and store the count of how many people prefers a specific language. To fix this, I searched on google, and found some solutions with some free cloud storage service. <a href="https://leancloud.cn" target="_blank" rel="noopener">Leancloud</a> is the one I used. Leancloud provides me an ability to store/fetch simple data object to cloud and easy to backup. It is pretty nice.</p>
+<p>After this simplification, I can get rid of the backend part, then I can only focus on the front end part.</p>
+<h4 id="Improve-frontend"><a href="#Improve-frontend" class="headerlink" title="Improve frontend"></a>Improve frontend</h4><p>It is hard to describe. Frontend is fansy and lots of technology and framework. Although I choose <em>vuejs</em> as basic framework, but the question is “am I using it the correct way?”. I might have another blog to represent this vuejs refactor experience.</p>
+<p>About the <em>pack and deployment</em>, I used to use <a href="https://gulpjs.com" target="_blank" rel="noopener">gulp</a>. With this, I can define several gulp tasks and group the tasks together for building, deployment etc. After I learned <em>webpack</em>, I found it is my favorite one. I don’t need to copy many gulp tasks from one project to another; I don’t need to define many customized tasks; I can merge my css files, styles and many js modules to one file to ship it out… I will try to use webpack unless something it doesn’t support.</p>
+<h4 id="Deployment"><a href="#Deployment" class="headerlink" title="Deployment"></a>Deployment</h4><p>The deloyment is a headache before. Due to the Sqlite and express level, I need to setup a web server on linux host. It is pretty expensive. Fortunately, I have one, so I can host it in my existing host. While now, I removed the backend support, this app becomes a pure static web app. I can host it on <a href="https://github.com/howardchn/which-programming-language" target="_blank" rel="noopener">github</a> and ship it with <a href="http://howardchn.github.io/which-programming-language">github pages</a> without extra cost.</p>
+<h1 id="Follow-up-and-wrap-up"><a href="#Follow-up-and-wrap-up" class="headerlink" title="Follow up and wrap up"></a>Follow up and wrap up</h1><p>At this step, I’m satisfy with current refactor. But there are still st. I can improve more. I will do it once I have time with following improvement.</p>
+<ol>
+<li>Add a statistics on represents a ratio of the programming language.</li>
+<li>Allow to leave message.</li>
+<li>Allow to share the result on wechat or some popular social apps.</li>
+<li>Check the result of your history.</li>
+<li>Any suggestion from feedback.</li>
+</ol>
+<p>See you later. I appreciate any feedback by contact me on <a href="www.linkedin.com/in/howard-chen-328493142">Linkedin</a> or <a href="mailto:howardch@outlook.com" target="_blank" rel="noopener">email</a>.</p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/refactor/">refactor</a>
+    </span>
+    
+
+    </div>
+
+    
+    <div class="article-meta pull-right">
+      <span>
+        <i class="icon-comments"></i>
+        <span>
+          <a href="/2018/06/24/one-mini-project-refactor/#comment">Comments</a>
+        </span>
+      </span>
+    </div>
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/2018/04/09/space-between-number-and-unit/"><span>Space Between Number and Unit</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2018/04/09/space-between-number-and-unit/" rel="bookmark">
+        <time class="entry-date published" datetime="2018-04-08T16:00:00.000Z">
+          2018-04-09
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>今天在系统发现一个小知识，是之前都没有注意的。比如持续工作1小时30分，你会写成“<code>1h 30m</code>” 还是 “<code>1 h 30 m</code>”? 如果之前，我会毫不犹豫的选择前者。今天迫于强迫症看到系统里面写成后者就想把他改了。介于公司严格的代码审核机制，我还是先调查一下。结果不看不知道，一看吓一跳。居然有个<a href="https://www.bipm.org/en/publications/si-brochure/section5-3.html" target="_blank" rel="noopener">标准可以参考</a>。</p>
+<p>注意<code>5.3.3</code>说，数字在单位之前的，都需要加一个空格来分割数字和单位。当然也有例外，那就是度分秒的符号和数字之间不用加空格。</p>
+<p>哎！原来一直都没有走国际标准。时刻保持好奇心。</p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/standard/">standard</a>
+    </span>
+    
+
+    </div>
+
+    
+    <div class="article-meta pull-right">
+      <span>
+        <i class="icon-comments"></i>
+        <span>
+          <a href="/2018/04/09/space-between-number-and-unit/#comment">Comments</a>
+        </span>
+      </span>
+    </div>
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/2018/02/12/timezone-dst-best-practices/"><span>Time Zone &amp; Daylight Saving Best Practice</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2018/02/12/timezone-dst-best-practices/" rel="bookmark">
+        <time class="entry-date published" datetime="2018-02-11T16:00:00.000Z">
+          2018-02-12
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>每当别人问起怎么存储时间信息的时候，我都会告诉别人，用统一的UTC时间来存储。结果，我一直都错了。这里整理了一份对于时间存储的列表，希望能对你的时间存储行为带来最佳实践。</p>
+<h3 id="一定要这样做"><a href="#一定要这样做" class="headerlink" title="一定要这样做:"></a>一定要这样做:</h3><ul>
+<li>当需要一个确定时刻，保留一个持续化的并和夏令时无关的统一时间。GMT和UTC都适用于这种情况，但UTC会好一些。GMT是一个时区，而UTC是一个标准。</li>
+<li>如果选择存储本地时间的话，请把本地时间和UTC时间的时间偏移也记录下来。注意，时间偏移值在一年中的某些月份可能会变。这样后面使用的时候才能被计算成确切时间。</li>
+<li>有时，你也需要考虑把UTC和本地时间都存储下来。常常，我们会考虑把他们分布存储到两个字段里面，但有些平台上，他们可以被存储在一个平台里面，如MSSQL 的datetimeoffset字段(<a href="https://docs.microsoft.com/en-us/sql/t-sql/data-types/datetimeoffset-transact-sql)" target="_blank" rel="noopener">https://docs.microsoft.com/en-us/sql/t-sql/data-types/datetimeoffset-transact-sql)</a>; 而这个不是sql标准字段。</li>
+<li>当需要把日期存储为数字类型，使用Unix Time (<a href="https://en.wikipedia.org/wiki/Unix_time" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Unix_time</a>) 如需要精确的时间，请考虑替换为毫秒级别。这个数字基于UTC，没有做任何timezone调整。Java: new Date().getTime(); JS: new Date().getTime() 或 +new Date都可以。</li>
+<li>如果以后需要修改这个时间戳，请顺带记录上原来时区的ID，用以判断时间偏移和原来存储时间比较是否变化了。</li>
+<li>如果是为计划未来的定期任务，存储本地时间会比存储UTC更好，因为通常会夏令时的改动。比如冬令时设置你每天的闹钟为早上8点，转换为UTC时间以后，在夏令时期间，你就会上班迟到一小时了:) <a href="https://stackoverflow.com/questions/19626177/how-to-store-repeating-dates-keeping-in-mind-daylight-savings-time/19627330#19627330" target="_blank" rel="noopener">https://stackoverflow.com/questions/19626177/how-to-store-repeating-dates-keeping-in-mind-daylight-savings-time/19627330#19627330</a></li>
+<li>当你计划一整天的时间，不要转成UTC或者其他任何时区来记录。<ul>
+<li>数据库里面这种字段尽量不要包含时刻信息。保留到天即可。</li>
+<li>如果数据库或存储平台不允许这样做，那么尽量在读取时忽略时刻的意义。如果确实不确定，那么我们尽量采用正午12：00，而不要用午夜0：00来显示这个时刻。</li>
+</ul>
+</li>
+<li>注意时区差并不是永远都是整数。比如Indian Standard Time is UTC+05:30, and Nepal uses UTC+05:45</li>
+<li>相比UTC或者GMT，很多商业规则使用Civil time会更多。安排计划时需要把UTC时间戳转换到本地时区。</li>
+<li>时区(Timezone)和时间偏移值(Time Offsets)不一样，时区不会变，而时间偏移值在一年中可能会变可能会变。比如洛杉矶的时区是IANA，在夏令时的时候时间偏移值为UTC-7，冬令时的时间偏移值为UTC-8，和它相邻的亚利桑那州不存在夏令时，时间偏移值一直保持UTC-7。</li>
+<li>考虑时间类型（确定时间，海外时间，相对时间，历史时间，计划循环时间），你需要采用不同的存储方式保证时间不会缺失。</li>
+<li>让你的操作系统，数据库和应用程序保持一致。</li>
+<li>服务器上，设置硬件时钟和操作系统时钟为UTC时间，非本地时间。</li>
+<li>服务器端代码，包含网站，永远不要指望服务器本地时间能有意义。</li>
+<li>根据你的应用，把时间的设置分成若干种类，对于不同的种类设计适当的存储方案。不要做全局设置。</li>
+<li>服务器使用网络时间协议</li>
+<li>考虑在FAT32/16的设备上使用本地时间。理由比较奇葩。比如在DOS时代，个人电脑都没有网络功能，时间都是使用Bios时间，存储在3.5寸软盘上。那时人们完全不会关心软盘上面存储的时间，而会使用铅笔在盘面上写下处理时间。因此这些时间不会准确。回到现在，很多移动设备，比如相机等还在使用FAT类型格式； 当你在另一个时区时，这些时间不会被改变，如果存储时间戳，就会导致存储时间的混乱。所以存储本地时间会更好。</li>
+<li>当设置周期时间时，比如跟美剧，每周一集更新那种，记住时间会因为夏令时，在不同时区会有不同。</li>
+<li>使用&gt;=判断下限，用&lt;判断上限。</li>
+</ul>
+<h3 id="千万不要这样做"><a href="#千万不要这样做" class="headerlink" title="千万不要这样做:"></a>千万不要这样做:</h3><ul>
+<li>不要混淆时区（America/New York）和时区偏移（UTC-5:00），他们是两种概念。<a href="https://stackoverflow.com/tags/timezone/info" target="_blank" rel="noopener">https://stackoverflow.com/tags/timezone/info</a></li>
+<li>不要在老浏览器，ES5.1及以前版本使用javascript的Date对象，因为他们在使用夏令时计算的时候会有问题。ES6已经修复。</li>
+<li>不要使用客户端时间，至少我不能保证你浏览器上时间时正确的。</li>
+<li>不要再告诉别人，都用UTC时间了，虽然这种事我也做过。正确的做法是根据场景，选择对用的存储方式。</li>
+</ul>
+<h3 id="最后总结"><a href="#最后总结" class="headerlink" title="最后总结"></a>最后总结</h3><p>在涉及到时间存储的问题上，一定要谨慎。把场景列出来以后再考虑适当的存储方式。一个简单的例子，我想过滤出今天所有的日志信息。想想，可能会出现几种不同的场景？所以一般通用的解决方案会把local_time, utc_time, local_tz都存下来。现今最长的timezone是“America/Argentina/ComodRivadavia”， 共32个字符。</p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/timezone/">timezone</a>
+    </span>
+    
+
+    </div>
+
+    
+    <div class="article-meta pull-right">
+      <span>
+        <i class="icon-comments"></i>
+        <span>
+          <a href="/2018/02/12/timezone-dst-best-practices/#comment">Comments</a>
+        </span>
+      </span>
+    </div>
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/2017/10/04/learn-python-chapter-2/"><span>Learn Python - Module</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2017/10/04/learn-python-chapter-2/" rel="bookmark">
+        <time class="entry-date published" datetime="2017-10-03T16:00:00.000Z">
+          2017-10-04
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>In the <a href="/2017/10/03/learn-python-chapter-1/">previous topic</a>, it includes some really useful points of Python basics. In this page, we will try to use <em>Modules</em> in Python.</p>
+<h2 id="Custom-module"><a href="#Custom-module" class="headerlink" title="Custom module"></a>Custom module</h2><p>There are two ways of using modules. Let’s first create a new Python file names <em>module1.py</em>.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">say_hello</span><span class="params">()</span>:</span> </span><br><span class="line">    print(<span class="string">'Hello Howard.'</span>)</span><br></pre></td></tr></table></figure></p>
+<p>In another Python file that wants to use the functions in the <em>module1.py</em>, we need the following ways to reference this module.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># method 1. note, no file extension here</span></span><br><span class="line"><span class="keyword">import</span> module1 </span><br><span class="line">module1.say_hello()</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># method 2. note, we don't have the module name before the function name</span></span><br><span class="line"><span class="keyword">from</span> module1 <span class="keyword">import</span> say_hello</span><br><span class="line">say_hello()</span><br></pre></td></tr></table></figure>
+<p>Choose the two methods above wisely and it makes your code easier to read.</p>
+<h2 id="Use-a-build-in-module"><a href="#Use-a-build-in-module" class="headerlink" title="Use a build-in module"></a>Use a build-in module</h2><p>We are going to download an image from internet and store in disk. Here is the code.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> urllib <span class="keyword">import</span> request</span><br><span class="line"></span><br><span class="line">url = <span class="string">'https://avatars2.githubusercontent.com/u/8789008?v=4&amp;s=460'</span></span><br><span class="line">filename = <span class="string">'1.jpg'</span></span><br><span class="line">request.urlretrieve(url, filename)</span><br></pre></td></tr></table></figure></p>
+<p>In this code, we import an <em>urllib</em> module. You could use any module like this to support various requirements.</p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/python/">python</a>
+    </span>
+    
+
+    </div>
+
+    
+    <div class="article-meta pull-right">
+      <span>
+        <i class="icon-comments"></i>
+        <span>
+          <a href="/2017/10/04/learn-python-chapter-2/#comment">Comments</a>
+        </span>
+      </span>
+    </div>
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/2017/10/03/learn-python-chapter-1/"><span>Learn Python - Basics</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2017/10/03/learn-python-chapter-1/" rel="bookmark">
+        <time class="entry-date published" datetime="2017-10-02T16:00:00.000Z">
+          2017-10-03
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <p>It is very excited to learn <a href="https://www.python.org" target="_blank" rel="noopener">python</a> (I recommend to use python3 directly which will have better support in the future). First, let’s start with an IDE. </p>
+<p>Here are three IDEs I like very much.</p>
+<ul>
+<li><em>IDLE</em>, it is installed along with the Python installer, which provides a powerful shell of playing with python. </li>
+<li><em>PyCharm</em>, <a href="https://jetbrains.com" target="_blank" rel="noopener">JetBrains</a> provides the most powerful IDE for python, it supports many useful functions like refactoring, lint and so on.</li>
+<li><em>VSCode</em> is a lightweight IDE for python as well, but you need to install some plugins to support python better. Here are plugins recommended.<ul>
+<li><em>Code Runner</em> for executing python</li>
+<li><em>Python</em> support code intellisence, code formatting, auto indent etc.</li>
+<li><em>Pylint</em> is recommended as well.</li>
+</ul>
+</li>
+</ul>
+<p>Here are some points for python, I will make it simple as possible.</p>
+<ul>
+<li><p>Number</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">number = 51</span><br><span class="line">print(number)</span><br><span class="line"></span><br><span class="line">number = 51.3</span><br><span class="line">print(number)</span><br><span class="line"></span><br><span class="line">number1 = number / 2</span><br><span class="line">print(number1)</span><br><span class="line"></span><br><span class="line">number2 = number // 2</span><br><span class="line">print(number2)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>String</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">str = &quot;Hello World&quot;</span><br><span class="line">print(str)</span><br><span class="line"></span><br><span class="line">str1 = &apos;Hello World&apos;</span><br><span class="line">print(str1)</span><br><span class="line">print(str1[0:2])</span><br><span class="line">print(str1[:6])</span><br><span class="line">print(str1[6:])</span><br><span class="line">print(str1.upper())</span><br><span class="line">print(len(str1))</span><br><span class="line"></span><br><span class="line"># if we have some ESC, &apos;r&apos; means &apos;raw&apos;</span><br><span class="line">str1 = r&apos;Hello \r\n Howard!&apos;</span><br><span class="line">print(str1)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>List</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">ls = [1, 2, 3, 4, 5]</span><br><span class="line">print(len(ls))</span><br><span class="line"></span><br><span class="line">ls.append(6)</span><br><span class="line">print(ls)</span><br><span class="line"></span><br><span class="line">ls1 = ls + [7, 8]</span><br><span class="line">print(ls1)</span><br><span class="line"></span><br><span class="line">ls2 = ls1[:2]</span><br><span class="line">print(ls2)</span><br><span class="line"></span><br><span class="line">ls3 = range(0, 10)</span><br><span class="line">for i in ls3: print(i)</span><br><span class="line"></span><br><span class="line">ls3 = range(2, 10)</span><br><span class="line">for i in ls3: print(i)</span><br><span class="line"></span><br><span class="line">ls3 = range(0, 16, 4)</span><br><span class="line">for i in ls3: print(i)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>if: elif: else (note: <code>is</code> and <code>==</code> are both fine to check the equalvity)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">s = &apos;s&apos;</span><br><span class="line">if(s == &apos;a&apos;): print(&apos;alpha&apos;)</span><br><span class="line">elif(s is &apos;b&apos;): print(&apos;beta&apos;)</span><br><span class="line">elif(s is &apos;s&apos;): print(&apos;superman&apos;)</span><br><span class="line">else: print(&apos;unknown&apos;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>for loop</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">items = [1, 4, 2, 6, 9, 7]</span><br><span class="line">for i in items: </span><br><span class="line">    print(i)</span><br><span class="line"></span><br><span class="line">for i in items[:4]:</span><br><span class="line">    print(i)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>while loop (note: <code>while</code>, <code>is</code>, <code>break</code>, <code>continue</code>)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">i = 0</span><br><span class="line">while i &lt; 10:</span><br><span class="line">    print(i)</span><br><span class="line">    i += 1</span><br><span class="line">    if i is 5: break</span><br><span class="line">    else: continue</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Comments (single-line and multi-line)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># num = 20</span></span><br><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">str = 'hello'</span></span><br><span class="line"><span class="string">str += ' world'</span></span><br><span class="line"><span class="string">print(str)</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Function</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"># void</span><br><span class="line">def say_hello(name): </span><br><span class="line">    print(&apos;Hello&apos;, name)</span><br><span class="line"></span><br><span class="line">say_hello(&apos;Howard&apos;)</span><br><span class="line"></span><br><span class="line"># with return value</span><br><span class="line">def get_hello_message(name):</span><br><span class="line">    return &apos;Hello &apos; + name</span><br><span class="line"></span><br><span class="line">print(get_hello_message(&apos;Howard&apos;))</span><br><span class="line"></span><br><span class="line"># with default value</span><br><span class="line">def say_hello_with_default_value(name = &apos;Howard&apos;):</span><br><span class="line">    print(&apos;Hello&apos;, name)</span><br><span class="line">say_hello_with_default_value()</span><br><span class="line">say_hello_with_default_value(&apos;Bibioo&apos;)</span><br><span class="line"></span><br><span class="line"># with optional parameters</span><br><span class="line">def someone_do_something(name = &apos;Howard&apos;, action = &apos;ate&apos;, something = &apos;an apple&apos;):</span><br><span class="line">    print(name, action, something)</span><br><span class="line"></span><br><span class="line">someone_do_something()</span><br><span class="line">someone_do_something(&apos;Bibioo&apos;, &apos;is&apos;, &apos;awesome&apos;)</span><br><span class="line">someone_do_something(something = &apos;us&apos;, action = &apos;blesses&apos;, name = &apos;God&apos;)</span><br><span class="line"></span><br><span class="line"># flexibale variables</span><br><span class="line">def flexible_var(*args):</span><br><span class="line">    print(&apos;it has&apos;, len(args), &apos;arguments&apos;)</span><br><span class="line">    for i in args:</span><br><span class="line">        print(i)</span><br><span class="line">flexible_var(&apos;a&apos;, &apos;b&apos;, &apos;c&apos;)</span><br><span class="line"></span><br><span class="line"># unpack aruments, watch out the compare of the last two calls</span><br><span class="line">def unpack_arguments(age, apple_pw, smook_pw):</span><br><span class="line">    health = (100 - age) + (apple_pw * 3.5) - (smook_pw * 4.5)</span><br><span class="line">    print(health)</span><br><span class="line"></span><br><span class="line">person_data = [35, 7, 0]</span><br><span class="line">unpack_arguments(person_data[0], person_data[1], person_data[2])</span><br><span class="line">unpack_arguments(*person_data)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Set</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">my_shopping_cart = &#123;&apos;apple&apos;, &apos;milk&apos;, &apos;beer&apos;, &apos;milk&apos;&#125;</span><br><span class="line">print(my_shopping_cart)</span><br><span class="line">print(len(my_shopping_cart))</span><br><span class="line">print(&apos;milk&apos; in my_shopping_cart)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Dictionary (watch out the three different loops)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">classmates = &#123; &apos;Tony&apos;: &apos;cool but smells&apos;, &apos;Emma&apos;: &apos;sits behind me&apos;, &apos;Lucy&apos;: &apos;asks me too much questions&apos; &#125;</span><br><span class="line">print(len(classmates))</span><br><span class="line">print(classmates[&apos;Tony&apos;])</span><br><span class="line">for i in classmates:</span><br><span class="line">    print(i)</span><br><span class="line">for i in classmates.items():</span><br><span class="line">    print(i)</span><br><span class="line">for k, v in classmates.items():</span><br><span class="line">    print(k, v)</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>Now here are the basics for Python to remember, get back if need to recall the points, I will do more excited thing in the next part.</p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/python/">python</a>
+    </span>
+    
+
+    </div>
+
+    
+    <div class="article-meta pull-right">
+      <span>
+        <i class="icon-comments"></i>
+        <span>
+          <a href="/2017/10/03/learn-python-chapter-1/#comment">Comments</a>
+        </span>
+      </span>
+    </div>
+    
+  </div>
+</article>
+
+
+
+  <article>
+
+  
+    
+    <h3 class="article-title"><a href="/2017/09/23/what-I-have-done-in-september/"><span>Gosh, My Naked Resignation in Sept</span></a></h3>
+    
+  
+
+  <div class="article-top-meta">
+    <span class="posted-on">
+      <a href="/2017/09/23/what-I-have-done-in-september/" rel="bookmark">
+        <time class="entry-date published" datetime="2017-09-22T16:00:00.000Z">
+          2017-09-23
+        </time>
+      </a>
+    </span>
+  </div>
+
+
+  
+
+  <div class="article-content">
+    <div class="entry">
+      
+        <blockquote>
+<p>一个高龄程序员从离职到迷茫，到转换技术栈，最后进入一个非常满意的公司的一个月。</p>
+</blockquote>
+<p>一个月能做些什么事？看两本书，新学习一门语言，还是旅游一次，再或者是迷茫的过完？而我在这一个月里，经历了离职，迷茫，旅游，学习，最后获得了一个自己满意的新岗位。这一个月，我读了5本书，学习了几个前端框架，巩固了单元测试的不足，捡起了10年没有用的Java，把基础和近几年流行的函数式编程过了一遍。这一个月，我面了6家公司，收到3个offer，最后选择了一家云计算行业的美国公司。回首看来，一个月很短，但是我感觉却是过了一年。</p>
+<p>2017年8月16日，是我在前一家公司任职的最后一天。我为这家公司服务有近10年的时间，负责架构和开发了60%公司主流.NET控件产品，职位也是挺高的。离开这家有深厚感情的公司也是迫不得已。年龄大了，需要更宽广的空间和机会。因此，我做回自由人，重新考虑自己以后的职业和发展。</p>
+<h3 id="第一周"><a href="#第一周" class="headerlink" title="第一周"></a>第一周</h3><p>刚从每天固定的上班，下班的规律中走出来，那是相当的不习惯。早早的起来，泡了一杯茶，静静的坐着。拿出一张白纸，思考我想做什么？</p>
+<p>我很清楚自己的能力，因此我用了几分钟绘制出了可能合适的几个option。</p>
+<p><img src="/fancybox/posts/what-i-have-done-in-sep-2.jpg" alt="思维草图"></p>
+<p>问题主要分成3类</p>
+<ul>
+<li>做技术还是管理？</li>
+<li>我的技术栈？</li>
+<li>创业还是继续服务于企业？</li>
+</ul>
+<p>这3类问题很难回答。</p>
+<ul>
+<li>我喜欢技术，但又离不开管理。</li>
+<li>技术上，我做了13年.NET产品的开发和架构。大言不惭的认为属于专家级别。另一方面，我自己熟悉web产品，一直在跟踪业界流行的前端框架，并尝试做过一些小型的项目。同时，对于nodejs很感兴趣，用它搭建过过2个网站。我也会是不是学习一下python，它在我之前的工作中开发一些实用的工具非常快捷方便。放弃任何一个都不太忍心。</li>
+<li>我有很多想法，有一些产品的雏形，我是把这些做完，还是继续为企业服务。</li>
+</ul>
+<p>已经35岁的我，走到这一步，负责任的回答以上任何一个问题都会很难。既然这样，我就用最简单的剃刀原则，砍掉了很难实现的创业。我周围没有希望创业的小伙伴，一个人创业会很辛苦；虽然自己有一些积蓄，但是家庭的负担会比较重，风险也特大。看着那些倒在血泊中的前辈们，我只能在创业的道路上望而却步。基于离开公司的其中一个原因，我希望有机会接触更多更大的范围，不局限对于一个技术或者算法的专一，学习如何处理人与人的关系，人与项目的关系和项目和项目的关系也是一个技术人需要学习的。我认为我可以先不考虑这个问题，因为我觉得我都可以胜任。最后的问题也就是自己的技术栈。做这个决定算是对于市场的妥协。我们打开拉钩，智联等比较大的招聘网站，搜一下.NET相关的职位你就能意识到一些问题。在现在这种流行云，大数据，互联网和跨平台的大环境下，.NET的技术栈稍微显得有点局限（现在奋斗于.NET平台的小伙伴们不要太愤怒，我热爱.NET，从事这个技术栈13年，我的观点是.NET只是一个开发的工具，不要如崩塌的巴别塔，尝试看清眼前，并去接受，拥抱其他的工具）。最后我选出了.NET, JAVA, 前端作为技术栈；管理和技术双行；放弃创业的决定。</p>
+<p>中间做了一个小项目，花了2天时间旅游，一周就这样过去了。</p>
+<h3 id="第二周"><a href="#第二周" class="headerlink" title="第二周"></a>第二周</h3><p>看起来接一点小项目可以维持生计，时间也很充裕；但这种脱离社会，不稳定的职业方向并不是我所赞同的。因此我决定开始找工作。我重新整理了我毕业以后的所有大一点的项目，以最简短语言描述了一遍。信心满满的把简历挂在了大型招聘网站上。按照我第一周思考的结果，以互联网，大数据相关技术为主的公司为主，选择了3家公司（这里就匿名了）投出了自己的简历。毕竟10多年的开发经验应该很快有人回复。可惜2天了，看到简历的进度居然还是在已查看的状态。第3天，其中一家公司标注了不合适，希望我用STAR原则重新修改简历并重新提交。“STAR”???这是什么？我就像一座放置了10年的老钟，瞬间被石化。马上搜索了一下，哦~，原来“现在”的简历需要按照“在什么情境下，用什么方式处理了一件事，最后结果怎样的”的格式来写。好吧，我又把自己的简历重新拿起来修改了一次。重新选择了几家公司提交了。终于收到了面试通知，这已经是第3周了。当然这一周我还做了一些有意义的事，比如把数据结构重新过了一遍，学习了React框架（最近React因为License问题被很多大公司禁止了），把Vue和Angular也重新复习了一次，过了一遍ES6的书，并熟悉了一下不同的前端测试框架等。</p>
+<h3 id="第三，四周"><a href="#第三，四周" class="headerlink" title="第三，四周"></a>第三，四周</h3><p>为何这两周一起呢？因为这两周基本每周前3天都是面试，后面2天就是等结果。其中见识了什么是好的环境，待遇和福利。才知道自己以前的眼界是多么的窄。最后这家公司也就是我决定去的公司，总共有5-6轮面试，具体我也不记得了，只记得有一天都呆在那里，不停的讲解以前的项目经历细节和现今一些技术的发展状况，也会涉及一些难以调和的人际关系的问题，白板也被刷新了几次，最后还有一段时间是全英语交流。</p>
+<p>第3周我收到了一家国内企业的offer，和第4周的同一天收到2家美企的offer。考虑到后面这家做云和数据，现只做自己产品的公司和自己发展规划更加相近，因此我毫不犹豫的接受了这家公司的邀请。</p>
+<p>回头看看这一个月，每天都在思考，学习；绝望过，也高兴过；想过自己干，却最终还是回归到企业。这一切都是自己逼出来的。人一生可能会很难有这种经历，以后可能也不会再有，但是确实这些经历让自己更有目标感，更加明确自己人生的规划，也是我这辈子积累的一份财富。因此我把这个记录下来，也许以后看起来只是蝴蝶轻抚一下翅膀，却成为我职业生涯的更上一层楼。</p>
+
+      
+    </div>
+
+  </div>
+
+  <div class="article-footer">
+    <div class="article-meta pull-left">
+
+    
+
+    
+    
+
+    <span class="post-tags">
+      <i class="icon-tags"></i>
+        <a href="/tags/career/">career</a>
+    </span>
+    
+
+    </div>
+
+    
+    <div class="article-meta pull-right">
+      <span>
+        <i class="icon-comments"></i>
+        <span>
+          <a href="/2017/09/23/what-I-have-done-in-september/#comment">Comments</a>
+        </span>
+      </span>
+    </div>
+    
+  </div>
+</article>
+
+
+
+
+<nav class="pagination">
+  
+  
+</nav>
+    </main>
+
+    <footer class="site-footer">
+  <p class="site-info">
+    Proudly powered by <a href="https://hexo.io/" target="_blank">Hexo</a> and
+    Theme by <a href="https://github.com/CodeDaraW/Hacker" target="_blank">Hacker</a>
+    </br>
+    
+    &copy; 2019 Howard Chen
+    
+  </p>
+</footer>
+    
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-120362450-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-120362450-1');
+</script>
+
+
+  </div>
+</div>
+</body>
+</html>
