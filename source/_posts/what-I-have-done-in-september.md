@@ -15,7 +15,7 @@ tag: career
 
 我很清楚自己的能力，因此我用了几分钟绘制出了可能合适的几个option。
 
-![思维草图](/fancybox/posts/what-i-have-done-in-sep-2.jpg)
+![思维草图](/images/what-i-have-done-in-sep-2.jpg)
 
 问题主要分成3类
 - 做技术还是管理？
